@@ -3,44 +3,29 @@ package org.example.repository;
 import org.example.model.Counter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CountersRepository {
 
-    public static List<Counter> Counters = new ArrayList<>();
-
-    public CountersRepository() {
-    }
+    public static Map<Integer, Counter> Counters = new HashMap<>();
 
     public static void addCounter(int id) {
-        Counters.add(new Counter(id));
+        Counters.put(id, new Counter(id));
     }
-    public static List<Counter> getAllCounters() {
+    public static Map<Integer, Counter> getAllCounters() {
         return Counters;
     }
     public static Counter getCounterByld(int id) {
-        for (Counter counter : Counters) {
-            if (counter.getId() == id)
-                return counter;
-        }
-        return null;
+            return Counters.get(id);
     }
 
     public static void incrementCounterByld(int id) {
-        for (Counter counter : Counters) {
-            if (counter.getId() == id) {
-                counter.setId(id + 1);
-                break;
-            }
-        }
+        Counters.get(id).increment();
     }
 
     public static void removeCounterByld(int id) {
-        for (Counter counter : Counters) {
-            if (counter.getId() == id) {
-                Counters.remove(counter);
-                break;
-            }
-        }
+        Counters.remove(id);
     }
 }

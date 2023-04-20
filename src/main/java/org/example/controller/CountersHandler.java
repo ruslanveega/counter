@@ -24,7 +24,7 @@ public class CountersHandler implements HttpHandler {
         //List<Counter> counters = countersRepository.getAllCounters();
         CountersRepository.addCounter(1);
         CountersRepository.addCounter(2);
-        String message = CountersRepository.getAllCounters().toString();
+        String message = CountersRepository.getAllCounters().values().toString();
         int messageLen = message.getBytes(StandardCharsets.UTF_8).length;
         exchange.sendResponseHeaders(CODE, messageLen);
         OutputStream response = exchange.getResponseBody();
