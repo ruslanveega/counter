@@ -10,14 +10,10 @@ public class Counter {
     }
 
     public void increment() {
-        this.value += 1;
+        this.value++;
     }
     public int getValue() {
         return value;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getId() {

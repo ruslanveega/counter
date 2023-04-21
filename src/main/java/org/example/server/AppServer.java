@@ -16,7 +16,7 @@ public class AppServer {
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress(DEFAULT_PORT), DEFAULT_BACKLOG);
             server.createContext("/api/hello", new HelloHandler());
-            server.createContext("/api/counters", new CountersHandler());//new CountersRepository()));
+            server.createContext("/api/counters", new CountersHandler(new CountersRepository()));//new CountersRepository()));
             server.start();
         } catch (IOException e) {
             throw new RuntimeException(e);

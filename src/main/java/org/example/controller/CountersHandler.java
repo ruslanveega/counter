@@ -12,21 +12,21 @@ import java.util.List;
 
 public class CountersHandler implements HttpHandler {
 
-    private static final int CODE = 200;
-    //private final CountersRepository countersRepository;
+    private static final int SUCCESS_CODE = 200;
+    private final CountersRepository countersRepository;
 
-    public CountersHandler() {//)CountersRepository countersRepository) {
-       // this.countersRepository = countersRepository;
+    public CountersHandler(CountersRepository countersRepository) {
+       this.countersRepository = countersRepository;
     }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        //List<Counter> counters = countersRepository.getAllCounters();
-        CountersRepository.addCounter(1);
-        CountersRepository.addCounter(2);
-        String message = CountersRepository.getAllCounters().values().toString();
+        countersRepository.addCounter(1);
+        countersRepository.addCounter(2);
+        countersRepository.incrementCounterByld(1);
+        String message = countersRepository.getAllCounters().toString();
         int messageLen = message.getBytes(StandardCharsets.UTF_8).length;
-        exchange.sendResponseHeaders(CODE, messageLen);
+        exchange.sendResponseHeaders(SUCCESS_CODE, messageLen);
         OutputStream response = exchange.getResponseBody();
         response.write(message.getBytes(StandardCharsets.UTF_8));
         response.close();
