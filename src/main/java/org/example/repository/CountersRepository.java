@@ -2,27 +2,30 @@ package org.example.repository;
 
 import org.example.model.Counter;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class CountersRepository {
 
-    public static Map<Integer, Counter> counters = new HashMap<>();
+    public Map<Integer, Counter> counters = new HashMap<>();
 
-    public static void addCounter(int id) {
+    public void addCounter(int id) {
         counters.put(id, new Counter(id));
     }
-    public static Collection<Counter> getAllCounters() {
+    public Collection<Counter> getAllCounters() {
         return counters.values();
     }
-    public static Counter getCounterByld(int id) {
+    public Counter getCounterByld(int id) {
             return counters.get(id);
     }
 
-    public static void incrementCounterByld(int id) {
+    public void incrementCounterByld(int id) {
         counters.get(id).increment();
     }
 
-    public static void removeCounterByld(int id) {
+    public void removeCounterByld(int id) {
         counters.remove(id);
     }
 }
