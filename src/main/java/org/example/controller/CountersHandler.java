@@ -8,7 +8,6 @@ import org.example.repository.CountersRepository;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 public class CountersHandler implements HttpHandler {
 
@@ -21,9 +20,6 @@ public class CountersHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        countersRepository.addCounter(1);
-        countersRepository.addCounter(2);
-        countersRepository.incrementCounterByld(1);
         String message = countersRepository.getAllCounters().toString();
         int messageLen = message.getBytes(StandardCharsets.UTF_8).length;
         exchange.sendResponseHeaders(SUCCESS_CODE, messageLen);
@@ -31,4 +27,5 @@ public class CountersHandler implements HttpHandler {
         response.write(message.getBytes(StandardCharsets.UTF_8));
         response.close();
     }
+
 }

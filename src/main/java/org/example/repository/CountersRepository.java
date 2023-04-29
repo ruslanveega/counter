@@ -20,7 +20,6 @@ public class CountersRepository {
     public Counter getCounterByld(int id) {
             return counters.get(id);
     }
-
     public void incrementCounterByld(int id) {
         counters.get(id).increment();
     }
